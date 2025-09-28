@@ -6,6 +6,13 @@ public class Mountain {
     private String province;
     private String description;
 
+    public Mountain(String name, String code, String province, String description) {
+        this.name = name;
+        this.code = code;
+        this.province = province;
+        this.description = description;
+    }
+
     public String getCode() {
         return code;
     }

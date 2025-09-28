@@ -11,6 +11,13 @@ public class Controller {
     InputValidator iv = new InputValidator();
     Mountains ml = new Mountains();
     Students sl = new Students();
+
+    public Controller(Mountains ml, Students sl) {
+        this.ml = ml;
+        this.sl = sl;
+    }
+
+    //Feature_1
     public void addStudent() {
         Scanner sc = new Scanner(System.in);
         String studentID = "";
@@ -86,5 +93,78 @@ public class Controller {
         Student s = new Student(studentID, name, number, email, mountainCode, tuitionFee);
         sl.add(s);
         System.out.println(MenuView.ADD_SUCCESS);
+    }
+
+    //FEATURE_2
+    public void updateStudent(Student s) {
+        Scanner sc = new Scanner(System.in);
+        String studentID = "";
+        String name = "";
+        String number = "";
+        String email = "";
+        String mountainCode = "";
+        double tuitionFee = 6000000;
+        boolean status = false;
+
+        //add name
+        while (!status) {
+            System.out.println(MenuView.ADD_NAME + "(" + s.getName() + ")");
+            name = sc.nextLine();
+            if (name.equals("")) name = s.getName();
+            status = iv.inputValid(name, InputValidator.NAME_VALIDATE);
+            if (!status) {
+                System.out.println("Invalid NAME!!!");
+            }
+            sc = new Scanner(System.in);
+        }
+        status = false;
+
+        //update number
+        while (!status) {
+            System.out.println(MenuView.ADD_NUMBER + "(" + s.getNumber() + ")");
+            number = sc.nextLine();
+            if (number.equals("")) number = s.getNumber();
+            status = iv.inputValid(number, InputValidator.NUMBER_VALIDATE);
+            if (!status) {
+                System.out.println("Invalid NUMBER!!!");
+            }
+        }
+
+        //update email
+        while (!status) {
+            System.out.println(MenuView.ADD_EMAIL + "(" + s.getEmail() + ")");
+            email = sc.nextLine();
+            if (email.equals("")) email = s.getEmail();
+            status = iv.inputValid(email, InputValidator.EMAIL_VALIDATE);
+            if (!status) {
+                System.out.println("Invalid EMAIL!!!");
+            }
+        }
+
+        //update mountain code
+        while (!status) {
+            System.out.println(MenuView.ADD_MOUNTAIN_CODE + "(" + s.getMountainCode() + ")");
+            mountainCode = sc.nextLine();
+            if (mountainCode.equals("")) mountainCode = s.getMountainCode();
+            status = ml.contains(mountainCode);
+            if (!status) {
+                System.out.println("Invalid MOUNTAIN CODE!!!");
+            }
+        }
+
+        //update fee
+        tuitionFee = iv.TUITION_FEE_VALIDATE(number, tuitionFee);
+
+        s.setName(name);
+        s.setNumber(number);
+        s.setEmail(email);
+        s.setMountainCode(mountainCode);
+        s.setTuitionFee(tuitionFee);
+        System.out.println(MenuView.UPDATE_SUCCESS);
+    }
+
+    //FEATURE_3
+    public void showStudentList() {
+        System.out.println(sl.getList());
     }
 }
