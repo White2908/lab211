@@ -10,9 +10,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Students sl = new Students();
-        sl.loadStudentList("data/student.txt");
+        sl.loadStudentList("data/StudentList.txt");
         Mountains ml = new Mountains();
-        ml.loadMountainList("data/mountain.txt");
+        ml.loadMountainList("data/MountainList.txt");
         Controller controller = new Controller(ml,sl);
         int choice = 0;
 
@@ -33,10 +33,7 @@ public class Main {
                 case 2: // Update student
                     System.out.print("Enter Student ID to update: ");
                     String id = sc.nextLine();
-                    Student found = sl.getList().stream()
-                            .filter(s -> s.getStudentID().equals(id))
-                            .findFirst()
-                            .orElse(null);
+                    Student found =sl.contains(id);
                     if (found != null) {
                         controller.updateStudent(found);
                     } else {
@@ -49,12 +46,8 @@ public class Main {
                 case 4: // Remove student
                     System.out.print("Enter Student ID to remove: ");
                     String removeId = sc.nextLine();
-                    boolean removed = sl.getList().removeIf(s -> s.getStudentID().equals(removeId));
-                    if (removed) {
-                        System.out.println(MenuView.REMOVE_SUCCESS);
-                    } else {
-                        System.out.println("Student not found!");
-                    }
+                    Student removest = sl.contains(removeId);
+                    sl.remove(removest);
                     break;
                 case 5: // Search by name
                     System.out.print("Enter name keyword: ");
@@ -64,22 +57,12 @@ public class Main {
                             .forEach(System.out::println);
                     break;
                 case 6: // Filter by campus (mountainCode)
-                    System.out.print("Enter mountain code: ");
-                    String mCode = sc.nextLine();
-                    sl.getList().stream()
-                            .filter(s -> s.getMountainCode().equalsIgnoreCase(mCode))
-                            .forEach(System.out::println);
+                    System.out.print("Enter Campus: ");
+                    String CCode = sc.nextLine();
+                    sl.filterByCampus(CCode);
                     break;
                 case 7: // Statistics by location
-                    sl.getList().stream()
-                            .map(Student::getMountainCode)
-                            .distinct()
-                            .forEach(code -> {
-                                long count = sl.getList().stream()
-                                        .filter(s -> s.getMountainCode().equals(code))
-                                        .count();
-                                System.out.println(code + ": " + count + " students");
-                            });
+                    sl.statisticsByLocation(ml);
                     break;
                 case 8: // Save data
                     System.out.println("Feature SAVE DATA not implemented yet!");
@@ -90,6 +73,8 @@ public class Main {
                 default:
                     System.out.println("Invalid choice! Please enter 1-9.");
             }
+            System.out.println("Enter any key to continue...");
+            sc.nextLine();
         }
     }
 }

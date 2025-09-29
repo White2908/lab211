@@ -6,9 +6,9 @@ public class Mountain {
     private String province;
     private String description;
 
-    public Mountain(String name, String code, String province, String description) {
-        this.name = name;
+    public Mountain(String code, String name, String province, String description) {
         this.code = code;
+        this.name = name;
         this.province = province;
         this.description = description;
     }

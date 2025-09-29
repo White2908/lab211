@@ -18,7 +18,15 @@ public class Mountains {
                 return true;
             }
         }
+        for(Mountain m : list) {
+            System.out.println(m.getCode());
+        }
         return false;
+
+    }
+
+    public List<Mountain> getList() {
+        return list;
     }
 
     public void loadMountainList(String fileName){
@@ -43,6 +51,6 @@ public class Mountains {
             System.out.println("Error reading file\n" + fileName);
             return;
         }
-        System.out.println("Loaded " + lineNumber + " students\n");
+        System.out.println("Loaded " + lineNumber + " mountains\n");
     }
 }

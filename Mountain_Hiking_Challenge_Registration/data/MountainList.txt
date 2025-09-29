@@ -1,2 +1,6 @@
-Code,Mountain,Province,Description
-1,Ham Rong Mountain,Lao Cai,Located near the cell
+Code,Name,Province,Description
+MT01,Fansipan,Lao Cai,Highest mountain in Vietnam
+MT02,Bach Moc Luong Tu,Lai Chau,Beautiful mountain range with sea of clouds
+MT03,Putaleng,Lai Chau,Third highest mountain in Vietnam
+MT04,Tay Con Linh,Ha Giang,Remote mountain with rich biodiversity
+MT05,Nga Chi Son,Lao Cai,Known for its unique pyramid-like shape
