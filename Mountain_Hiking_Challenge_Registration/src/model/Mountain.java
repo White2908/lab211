@@ -1,5 +1,7 @@
 package model;
 
+import view.MenuView;
+
 public class Mountain {
     private String code;
     private String name;
@@ -47,6 +49,7 @@ public class Mountain {
 
     @Override
     public String toString() {
-        return "Mountain{" + "code=" + code + ", name=" + name + ", province=" + province + ", description=" + description + '}';
+        System.out.println(MenuView.MENU_END);
+        return "code=" + code + ", name=" + name + ", province=" + province + ", description=" + description;
     }
 }

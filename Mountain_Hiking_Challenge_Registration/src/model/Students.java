@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Mountains;
 import model.Mountain;
+import view.MenuView;
 
 public class Students {
     private final List<Student> list = new ArrayList<>();
@@ -19,7 +20,7 @@ public class Students {
     }
 
     public List<Student> getList() {
-        return list;
+        return list.subList(1, list.size());
     }
 
     public Student contains(String studentID) {
@@ -31,26 +32,54 @@ public class Students {
         return null;
     }
 
+    public Student containsID(String studentID) {
+        for(Student s : list) {
+            if(s.getStudentID().equals(studentID)) {
+                System.out.println(MenuView.MENU_END);
+                System.out.println("Student ID: " + s.getStudentID());
+                System.out.println("Name: " + s.getName());
+                System.out.println("Phone: " + s.getNumber());
+                System.out.println("Mountain: " + s.getMountainCode());
+                System.out.println("Fee: " + s.getTuitionFee());
+                return s;
+            }
+        }
+        System.out.println("This student has not registered yet.");
+        return null;
+    }
+
+    //Feature_5
     public void searchByName(String name){
+        int count = 0;
         for(Student s : list) {
             String compareName = "";
             compareName = s.getName().toLowerCase();
             if(compareName.contains(name.toLowerCase()) ) {
+                count++;
                 System.out.println(s);
             }
         }
+        if(count == 0) {
+            System.out.println("No one matches the search criteria!");
+        }
     }
 
+    //Feature_6
     public void filterByCampus(String campus){
+        int count = 0;
         for(Student s : list) {
             String fillID = s.getStudentID().toLowerCase();
             if(fillID.startsWith(campus.toLowerCase()) ) {
                 System.out.println(s);
+                count++;
             }
-
+        }
+        if (count == 0) {
+            System.out.println("No students have registered under this campus.");
         }
     }
 
+    //Feature_7
     public void statisticsByLocation(Mountains mlist){
         for(Mountain m : mlist.getList()) {
             int participant =0;
@@ -92,6 +121,7 @@ public class Students {
         System.out.println("Loaded " + lineNumber + " students\n");
     }
 
+    //Feature_8
     public void saveStudentList(String fileName){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
             for(Student s : list) {

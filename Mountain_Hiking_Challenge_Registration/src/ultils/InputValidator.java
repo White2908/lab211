@@ -5,7 +5,7 @@ public class InputValidator {
     public InputValidator() {
     }
 
-    public static final String ID_VALIDATE = "^(SE|HE|DE|QE|CE)\\d{6}$";
+    public static final String ID_VALIDATE = "^[SsHhDdQqCc][Ee]\\d{6}$";
     public static final String NAME_VALIDATE = "^[a-zA-Z\\s]{2,20}$";
     public static final String NUMBER_VALIDATE = "^(\\+84|0)\\d{9}$";
     public static final String EMAIL_VALIDATE = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";

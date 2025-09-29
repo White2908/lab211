@@ -1,5 +1,6 @@
 package controller;
 
+import model.Mountain;
 import model.Mountains;
 import model.Student;
 import model.Students;
@@ -35,6 +36,9 @@ public class Controller {
             status = iv.inputValid(studentID,InputValidator.ID_VALIDATE);
             if(!status){
                 System.out.println("Invalid ID!!!");
+            }
+            if(sl.contains(studentID) != null){
+                status = false;
             }
             sc = new Scanner(System.in);
         }
@@ -165,6 +169,21 @@ public class Controller {
 
     //FEATURE_3
     public void showStudentList() {
-        System.out.println(sl.getList());
+        System.out.println(MenuView.STUDENT_LIST);
+        for (Student s : sl.getList()) {
+            System.out.println(String.format("%-10s | %-20s | %-13s | %-10s| %.0f",
+                    s.getStudentID(),
+                    s.getName(),
+                    s.getNumber(),
+                    s.getMountainCode(),
+                    s.getTuitionFee()));
+        }
+        System.out.println(MenuView.MENU_END);
+    }
+
+    public void showMountainList() {
+        for (Mountain m : ml.getList()) {
+            System.out.println(m);
+        }
     }
 }

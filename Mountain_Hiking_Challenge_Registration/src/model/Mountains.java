@@ -14,7 +14,7 @@ public class Mountains {
 
     public boolean contains(String code) {
         for(Mountain m : list) {
-            if(m.getCode().equals(code)) {
+            if(m.getCode().equalsIgnoreCase(code)) {
                 return true;
             }
         }
@@ -40,9 +40,14 @@ public class Mountains {
                 String[] data = line.split(",");
                 if(data.length < 3 || data.length > 4){
                     System.out.println("Something is missing in line " + lineNumber + "\n");
+                    continue;
                 }
                 else {
-                    Mountain m = new Mountain(data[0], data[1], data[2], data[3]);
+                    String code = data[0].trim();
+                    String name = data[1].trim();
+                    String province = data[2].trim();
+                    String description = (data.length == 4) ? data[3].trim() : "";
+                    Mountain m = new Mountain(code, name, province, description);
                     list.add(m);
                 }
                 lineNumber++;
