@@ -20,7 +20,7 @@ public class Students {
     }
 
     public List<Student> getList() {
-        return list.subList(1, list.size());
+        return list;
     }
 
     public Student contains(String studentID) {
@@ -70,8 +70,8 @@ public class Students {
         for(Student s : list) {
             String fillID = s.getStudentID().toLowerCase();
             if(fillID.startsWith(campus.toLowerCase()) ) {
-                System.out.println(s);
                 count++;
+                System.out.println(s);
             }
         }
         if (count == 0) {
@@ -81,6 +81,7 @@ public class Students {
 
     //Feature_7
     public void statisticsByLocation(Mountains mlist){
+        System.out.println("Mountain code" + "|" + "Number of participant" + "|" + "total cost");
         for(Mountain m : mlist.getList()) {
             int participant =0;
             double totalcost = 0;
@@ -90,8 +91,9 @@ public class Students {
                     totalcost += s.getTuitionFee();
                 }
             }
+
             if(participant > 0) {
-                System.out.println(m.getCode() + " | " + participant + " | " + totalcost);
+                System.out.println(m.getCode() + "            | " + participant + "                   | " + totalcost);
             }
         }
     }
@@ -124,6 +126,8 @@ public class Students {
     //Feature_8
     public void saveStudentList(String fileName){
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(fileName))) {
+            bw.write("Code,Name,Number,Mail,Peak Code,Fee");
+            bw.newLine();
             for(Student s : list) {
                 bw.write(s.getStudentID() + "," + s.getName() + "," + s.getNumber() + "," + s.getEmail() + "," + s.getMountainCode() + "," + s.getTuitionFee());
                 bw.newLine();
@@ -132,6 +136,27 @@ public class Students {
             System.out.println("Error writing file\n" + fileName);
             return;
         }
+    }
+
+    public void searchByPhone(String sp){
+        int count = 0;
+        for(Student s : list) {
+            String comparePhone = "";
+            comparePhone = s.getNumber().toLowerCase();
+            if(comparePhone.contains(sp.toLowerCase()) ) {
+                count++;
+                System.out.println(String.format("%-10s | %-20s | %-13s | %-10s| %.0f",
+                        s.getStudentID(),
+                        s.getName(),
+                        s.getNumber(),
+                        s.getMountainCode(),
+                        s.getTuitionFee()));
+            }
+        }
+        if(count == 0) {
+            System.out.println("No one matches this String (0 Students was find!!)");
+        }
+        else System.out.println("These are " + count + " Student");
     }
 
 }

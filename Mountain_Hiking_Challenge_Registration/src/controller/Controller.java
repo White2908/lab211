@@ -133,6 +133,7 @@ public class Controller {
                 System.out.println("Invalid NUMBER!!!");
             }
         }
+        status = false;
 
         //update email
         while (!status) {
@@ -144,6 +145,7 @@ public class Controller {
                 System.out.println("Invalid EMAIL!!!");
             }
         }
+        status = false;
 
         //update mountain code
         while (!status) {

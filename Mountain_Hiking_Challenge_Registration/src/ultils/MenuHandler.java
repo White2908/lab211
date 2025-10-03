@@ -102,6 +102,12 @@ public class MenuHandler {
                     }
                     System.out.println("Exiting...");
                     return;
+                case 10:
+                    System.out.println("Enter String S:");
+                    String sp = sc.nextLine();
+                    System.out.println(MenuView.STUDENT_LIST);
+                    sl.searchByPhone(sp);
+                    break;
                 default:
                     System.out.println("This function is not available.");
             }

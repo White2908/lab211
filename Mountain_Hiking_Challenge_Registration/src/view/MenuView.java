@@ -11,6 +11,7 @@ public class MenuView {
     public static final String FEATURE_7 = "7.Statistics Of Registration Numbers By Location:\n";
     public static final String FEATURE_8 = "8.Save Data\n";
     public static final String FEATURE_9 = "9.Exit\n";
+    public static final String FEATURE_10 = "10.Search Student by Phone\n";
     public static final String MENU_END =  "----------------------------------------------------------------------------------\n";
 
     public static final String ADD_ID = "Enter student ID: ";
@@ -42,6 +43,7 @@ public class MenuView {
         System.out.println(FEATURE_7);
         System.out.println(FEATURE_8);
         System.out.println(FEATURE_9);
+        System.out.println(FEATURE_10);
         System.out.println(MENU_END);
     }
 
